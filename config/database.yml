@@ -14,7 +14,8 @@ default: &default
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
-  password:
+  password: password
+  host: db
   socket: /tmp/mysql.sock
 
 development:
@@ -50,5 +51,3 @@ test:
 production:
   <<: *default
   database: docker_sample_app_production
-  username: docker_sample_app
-  password: <%= ENV['DOCKER_SAMPLE_APP_DATABASE_PASSWORD'] %>
