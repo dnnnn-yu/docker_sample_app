@@ -1,24 +1,36 @@
-# README
+# Dockerを使う
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 機能
+機能はシンプルなCRUD。Docker実験用
 
-Things you may want to cover:
+## Rails
 
-* Ruby version
+Rails6.0ではYarnのインストールが必要<br>
+Dockerfileにて
 
-* System dependencies
+~~~
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+    && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+~~~
 
-* Configuration
+~~~
+RUN apt get instal -y ~~~~~~ + yarn
+~~~ 
+yarnを追記
 
-* Database creation
+## MySQL
 
-* Database initialization
+Dockerfileは作らず、docker-compose.ymlに記載<br>
+enviroment: でパスワードなど設定可
+## nginx
 
-* How to run the test suite
+nginxコンテナ用のディレクトリを作り、<br>
+Dockerfileを作成<br>
+nginx.confを作成しておきコンテナ内にコピー
 
-* Services (job queues, cache servers, search engines, etc.)
+## docker-compose.yml
 
-* Deployment instructions
-
-* ...
+ports: <br>
+\- ホストのポート:コンテナのポート <br>
+depends_on: <br>
+  コンテナの起動の順序を制御
